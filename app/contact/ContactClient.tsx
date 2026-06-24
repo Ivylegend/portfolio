@@ -6,10 +6,22 @@ import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 
 const faqs = [
-  { q: "How quickly can we start?", a: "Most engagements kick off within 1-2 weeks of the discovery call." },
-  { q: "Do you take equity?", a: "Open to a hybrid of cash + equity for the right early-stage teams." },
-  { q: "Do you work with non-technical founders?", a: "Often. I translate product vision into a buildable plan and own the engineering end-to-end." },
-  { q: "What size of project is a good fit?", a: "From a tight 2-week sprint to multi-month platform builds - as long as the scope is real." },
+  {
+    q: "How quickly can we start?",
+    a: "Most engagements kick off within 1-2 weeks of the discovery call.",
+  },
+  {
+    q: "Do you take equity?",
+    a: "Open to a hybrid of cash + equity for the right early-stage teams.",
+  },
+  {
+    q: "Do you work with non-technical founders?",
+    a: "Often. I translate product vision into a buildable plan and own the engineering end-to-end.",
+  },
+  {
+    q: "What size of project is a good fit?",
+    a: "From a tight 2-week sprint to multi-month platform builds - as long as the scope is real.",
+  },
 ];
 
 export function ContactClient() {
@@ -27,14 +39,18 @@ export function ContactClient() {
         </Reveal>
         <Reveal delay={0.05}>
           <h1 className="text-display text-gradient text-[clamp(2.5rem,8vw,7rem)]">
-            Let&apos;s build something<br />
-            <em className="italic font-normal text-muted-foreground">remarkable.</em>
+            Let&apos;s build something
+            <br />
+            <em className="italic font-normal text-muted-foreground">
+              remarkable.
+            </em>
           </h1>
         </Reveal>
         <Reveal delay={0.12}>
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Tell me about what you&apos;re building. I respond personally to every message,
-            usually within a few hours. Briefs, RFPs and rough ideas all welcome.
+            Tell me about what you&apos;re building. I respond personally to
+            every message, usually within a few hours. Briefs, RFPs and rough
+            ideas all welcome.
           </p>
         </Reveal>
       </section>
@@ -47,13 +63,31 @@ export function ContactClient() {
 
           <Reveal delay={0.1} className="lg:col-span-2">
             <div className="flex h-full flex-col gap-3">
-              <CtaCard label="WhatsApp" value="Chat with me" href="https://wa.me/2348000000000" hint="Fastest reply, usually within hours." />
-              <CtaCard label="Email" value="hello@icha.ng" href="mailto:hello@icha.ng" hint="For briefs, RFPs and decks." />
-              <CtaCard label="Book a call" value="30-min intro" href="#" hint="Pick a time that works for you." />
+              <CtaCard
+                label="WhatsApp"
+                value="Chat with me"
+                href="https://wa.me/2349122971136"
+                hint="Fastest reply, usually within hours."
+              />
+              <CtaCard
+                label="Email"
+                value="victoryicha2@gmail.com"
+                href="mailto:victoryicha2@gmail.com"
+                hint="For briefs, RFPs and decks."
+              />
+              <CtaCard
+                label="Book a call"
+                value="30-min intro"
+                href="#"
+                hint="Pick a time that works for you."
+              />
               <div className="mt-2 rounded-3xl surface-card p-7">
-                <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Working hours</div>
+                <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  Working hours
+                </div>
                 <div className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Mon - Fri · 9am to 7pm WAT<br />
+                  Mon - Fri · 9am to 7pm WAT
+                  <br />
                   Async-friendly worldwide.
                 </div>
               </div>
@@ -74,7 +108,9 @@ export function ContactClient() {
             <Reveal key={f.q} delay={(i % 2) * 0.05}>
               <div className="h-full bg-background p-8">
                 <div className="text-base font-medium">{f.q}</div>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {f.a}
+                </p>
               </div>
             </Reveal>
           ))}
@@ -86,12 +122,27 @@ export function ContactClient() {
   );
 }
 
-function CtaCard({ label, value, hint, href }: { label: string; value: string; hint: string; href: string }) {
+function CtaCard({
+  label,
+  value,
+  hint,
+  href,
+}: {
+  label: string;
+  value: string;
+  hint: string;
+  href: string;
+}) {
   return (
-    <a href={href} className="group flex-1 rounded-3xl surface-card p-7 transition-colors hover:bg-surface">
+    <a
+      href={href}
+      className="group flex-1 rounded-3xl surface-card p-7 transition-colors hover:bg-surface"
+    >
       <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
         {label}
-        <span className="transition-transform group-hover:translate-x-0.5">↗</span>
+        <span className="transition-transform group-hover:translate-x-0.5">
+          ↗
+        </span>
       </div>
       <div className="mt-6 text-2xl font-medium tracking-tight">{value}</div>
       <div className="mt-2 text-sm text-muted-foreground">{hint}</div>
