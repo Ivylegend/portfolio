@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -65,6 +66,8 @@ const structuredData = {
     "SEO",
   ],
 };
+
+const googleAnalyticsId = "G-80W4MDKVE1";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://icha.ng"),
@@ -152,6 +155,18 @@ export default function RootLayout({
       className={`${interTight.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${googleAnalyticsId}');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           suppressHydrationWarning
