@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   motion,
   useMotionValue,
@@ -218,11 +219,12 @@ function Hero() {
         style={{ y, opacity }}
         className="pointer-events-none absolute inset-0 -z-10"
       >
-        <img
+        <Image
           src={heroBg}
           alt=""
-          width={1920}
-          height={1280}
+          fill
+          priority
+          sizes="100vw"
           className="h-full w-full object-cover opacity-60"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/40 via-background/20 to-background" />
@@ -244,17 +246,20 @@ function Hero() {
             Available for select Q3 engagements
           </div>
         </Reveal>
-        <h1 className="text-display text-gradient text-[clamp(2.75rem,7.5vw,7.5rem)]">
-          <HeroLine delay={0}>I build software</HeroLine>
-          <HeroLine delay={0.08}>products that help</HeroLine>
-          <HeroLine delay={0.16}>
+        <Reveal delay={0.05}>
+          <h1 className="text-display text-gradient text-[clamp(2.75rem,7.5vw,7.5rem)]">
+            I build software
+            <br />
+            products that help
+            <br />
             businesses{" "}
             <em className="italic font-normal text-muted-foreground">
               launch,
             </em>
-          </HeroLine>
-          <HeroLine delay={0.24}>scale, and grow.</HeroLine>
-        </h1>
+            <br />
+            scale, and grow.
+          </h1>
+        </Reveal>
         <Reveal delay={0.5} className="mt-10 max-w-2xl">
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
             I&apos;m <span className="text-foreground">Icha Victory</span>, a
@@ -288,27 +293,6 @@ function Hero() {
         Scroll
       </div>
     </section>
-  );
-}
-
-function HeroLine({
-  children,
-  delay,
-}: {
-  children: React.ReactNode;
-  delay: number;
-}) {
-  return (
-    <span className="block overflow-hidden pb-1">
-      <motion.span
-        initial={{ y: "110%" }}
-        animate={{ y: "0%" }}
-        transition={{ duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] }}
-        className="block"
-      >
-        {children}
-      </motion.span>
-    </span>
   );
 }
 
@@ -516,12 +500,11 @@ function About() {
         <div className="lg:col-span-5">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl surface-card">
-              <img
+              <Image
                 src={portrait}
                 alt="Icha Victory"
                 width={896}
                 height={1152}
-                loading="lazy"
                 className="h-full w-full object-cover grayscale"
               />
             </div>

@@ -243,9 +243,9 @@ export function ServicesClient() {
       {/* Services grid */}
       <section className="mx-auto max-w-6xl px-4 pb-24 md:pb-32">
         <div className="flex flex-col gap-6">
-          {services.map((s, i) => (
+          {services.map((s) => (
             <Reveal key={s.n} delay={0.04}>
-              <ServiceCard service={s} index={i} />
+              <ServiceCard service={s} />
             </Reveal>
           ))}
         </div>
@@ -303,10 +303,8 @@ export function ServicesClient() {
 
 function ServiceCard({
   service: s,
-  index,
 }: {
   service: (typeof services)[0];
-  index: number;
 }) {
   return (
     <motion.div
