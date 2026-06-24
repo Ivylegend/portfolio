@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <!-- Monogram Gradient (Silver/Gold metallic) -->
+    <linearGradient id="mono-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#e3e3e6" />
+      <stop offset="100%" stop-color="#a1a1aa" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    :root {
+      --fg: url(#mono-grad);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --fg: #151517;
+      }
+    }
+    .monogram {
+      stroke: var(--fg);
+      stroke-width: 16;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .dot {
+      fill: var(--fg);
+    }
+  </style>
+
+  <!-- Centered transparent monogram optimized for favicon scaling -->
+  <circle cx="82" cy="45" r="9" class="dot" />
+  <path d="M 82 78 L 82 148 L 132 78" class="monogram" />
+</svg>
