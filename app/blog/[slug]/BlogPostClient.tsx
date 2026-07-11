@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
@@ -171,13 +172,13 @@ export function BlogPostClient({
                   href="/contact"
                   className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
                 >
-                  Start a project <span className="grid h-5 w-5 place-items-center rounded-full bg-background/10 transition-transform group-hover:translate-x-0.5">→</span>
+                  Start a project <span className="grid h-5 w-5 place-items-center rounded-full bg-background/10 transition-transform group-hover:translate-x-0.5"><ArrowRight className="h-3.5 w-3.5" aria-hidden /></span>
                 </Link>
                 <Link
                   href="/services"
                   className="inline-flex items-center gap-2 rounded-full hairline px-6 py-3 text-sm font-medium transition-colors hover:bg-accent"
                 >
-                  View services →
+                  View services <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
               </div>
             </div>
@@ -212,7 +213,7 @@ export function BlogPostClient({
                     <h3 className="flex-1 text-base font-medium tracking-tight leading-snug">{p.title}</h3>
                     <div className="mt-6 flex items-center justify-between text-xs text-muted-foreground">
                       <span>{p.date}</span>
-                      <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
                     </div>
                   </motion.article>
                 </Link>

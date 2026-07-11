@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const projectTypes = ["Web App", "Mobile App", "AI / Agents", "Marketplace", "Fintech", "Website"];
@@ -106,7 +107,7 @@ export function ContactForm({ variant = "full", source = "Website contact form" 
           disabled={isSending}
           className="mt-2 inline-flex items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSending ? "Sending..." : "Send message"} <span>-&gt;</span>
+          {isSending ? "Sending..." : "Send message"} <ArrowRight className="h-4 w-4" aria-hidden />
         </button>
 
         {feedback && (

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog-data";
+import { projects } from "@/lib/projects-data";
 
 const routes = [
   { path: "", changeFrequency: "weekly" as const, priority: 1 },
@@ -25,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
+  const projectRoutes = projects.map((project) => ({
+    url: `https://icha.ng/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
 
-  return [...staticRoutes, ...blogRoutes];
+  return [...staticRoutes, ...projectRoutes, ...blogRoutes];
 }

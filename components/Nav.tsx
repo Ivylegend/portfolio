@@ -1,12 +1,13 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
-  { to: "/projects", label: "Work" },
+  { to: "/projects", label: "Projects" },
   { to: "/services", label: "Services" },
   { to: "/blog", label: "Blog" },
   { to: "/process", label: "Process" },
@@ -62,7 +63,7 @@ export function Nav() {
               className="hidden sm:inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs font-medium text-background transition-transform hover:scale-[1.03]"
             >
               Work with me
-              <span aria-hidden>→</span>
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </Link>
           </div>
         </div>

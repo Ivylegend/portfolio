@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
@@ -79,7 +80,7 @@ export function BlogClient() {
                   </p>
                 </div>
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full hairline transition-all group-hover:bg-foreground group-hover:text-background group-hover:scale-110 group-hover:rotate-[-30deg]">
-                  <span className="text-lg">↗</span>
+                  <ArrowUpRight className="h-5 w-5" aria-hidden />
                 </div>
               </div>
             </motion.article>
@@ -122,7 +123,7 @@ function PostCard({ post }: { post: (typeof blogPosts)[0] }) {
           <div className="mt-8 flex items-center justify-between text-xs text-muted-foreground">
             <span>{post.date}</span>
             <span className="flex items-center gap-1.5 transition-transform group-hover:translate-x-0.5">
-              Read <span>→</span>
+              Read <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </span>
           </div>
         </div>

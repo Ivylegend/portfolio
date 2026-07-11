@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
@@ -111,7 +112,7 @@ export function ProcessClient() {
             <h3 className="mt-3 text-display text-gradient text-3xl md:text-5xl">Let&apos;s scope something real.</h3>
           </div>
           <Link href="/contact" className="inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]">
-            Book a discovery call <span>-&gt;</span>
+            Book a discovery call <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
       </section>

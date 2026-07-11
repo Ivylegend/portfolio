@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
@@ -140,9 +141,7 @@ function CtaCard({
     >
       <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
         {label}
-        <span className="transition-transform group-hover:translate-x-0.5">
-          ↗
-        </span>
+        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
       </div>
       <div className="mt-6 text-2xl font-medium tracking-tight">{value}</div>
       <div className="mt-2 text-sm text-muted-foreground">{hint}</div>

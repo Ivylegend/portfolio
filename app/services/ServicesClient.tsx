@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
@@ -9,6 +10,7 @@ import { motion } from "motion/react";
 const services = [
   {
     n: "01",
+    slug: "mobile-app-development",
     t: "Mobile App Development",
     tag: "iOS & Android",
     lead: "Production-grade iOS and Android apps engineered for performance, polish, and scale — built with React Native and Flutter.",
@@ -32,6 +34,7 @@ const services = [
   },
   {
     n: "02",
+    slug: "escrow-powered-marketplaces",
     t: "Escrow-Powered Marketplaces",
     tag: "Trust Infrastructure",
     lead: "Trust-first marketplaces with built-in escrow, milestone-based payouts, dispute flows, and compliant payout rails.",
@@ -60,6 +63,7 @@ const services = [
   },
   {
     n: "03",
+    slug: "logistics-mobile-apps",
     t: "Logistics Mobile Apps",
     tag: "Real-Time Tracking",
     lead: "Driver, dispatcher and customer apps with real-time tracking, smart routing, and proof of delivery — built to handle volume.",
@@ -88,6 +92,7 @@ const services = [
   },
   {
     n: "04",
+    slug: "website-design-development",
     t: "Website Design & Development",
     tag: "Web Presence",
     lead: "Marketing sites and product surfaces that feel premium, load fast, and convert visitors into customers.",
@@ -111,6 +116,7 @@ const services = [
   },
   {
     n: "05",
+    slug: "ai-agents",
     t: "AI Agents",
     tag: "Intelligent Automation",
     lead: "Production-grade agents, RAG pipelines, and copilots wired into your operations — not demos, real systems that ship.",
@@ -139,6 +145,7 @@ const services = [
   },
   {
     n: "06",
+    slug: "duns-number-acquisition",
     t: "DUNS Number Acquisition",
     tag: "Business Registration",
     lead: "End-to-end DUNS registration support for Nigerian startups going global or onboarding enterprise clients and government contracts.",
@@ -160,6 +167,7 @@ const services = [
   },
   {
     n: "07",
+    slug: "whatsapp-business-software",
     t: "WhatsApp Business Software",
     tag: "Commerce & CRM",
     lead: "WhatsApp commerce flows, automated customer journeys, and CRM built entirely on the official WhatsApp Cloud API.",
@@ -182,6 +190,7 @@ const services = [
   },
   {
     n: "08",
+    slug: "seo-services",
     t: "SEO Services",
     tag: "Search Growth",
     lead: "Technical SEO, content architecture, and Core Web Vitals tuning that compounds — not vanity metrics, actual traffic growth.",
@@ -281,14 +290,14 @@ export function ServicesClient() {
                 >
                   Start a project
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-background/10 transition-transform group-hover:translate-x-0.5">
-                    →
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                   </span>
                 </Link>
                 <a
                   href="https://wa.me/2349122971136"
                   className="inline-flex items-center gap-3 rounded-full hairline px-7 py-3.5 text-sm font-medium transition-colors hover:bg-accent"
                 >
-                  WhatsApp me →
+                  WhatsApp me <MessageCircle className="h-4 w-4" aria-hidden />
                 </a>
               </div>
             </div>
@@ -308,7 +317,8 @@ function ServiceCard({
 }) {
   return (
     <motion.div
-      className="group relative overflow-hidden rounded-3xl surface-card"
+      id={s.slug}
+      className="group relative scroll-mt-28 overflow-hidden rounded-3xl surface-card"
       whileHover={{ y: -2 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -409,9 +419,7 @@ function ServiceCard({
             className="group/btn grid h-12 w-12 shrink-0 place-items-center rounded-full hairline transition-all hover:bg-foreground hover:text-background hover:scale-110"
             aria-label={`Start a ${s.t} project`}
           >
-            <span className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
-              ↗
-            </span>
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" aria-hidden />
           </Link>
         </div>
       </div>
@@ -423,7 +431,7 @@ function ServiceCard({
           className="flex items-center justify-between text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <span>Start a {s.t} project</span>
-          <span>→</span>
+          <ArrowRight className="h-4 w-4" aria-hidden />
         </Link>
       </div>
     </motion.div>

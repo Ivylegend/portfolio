@@ -29,7 +29,7 @@ function getServerSnapshot(): "dark" {
 
 export function ThemeToggle() {
   // useSyncExternalStore is the canonical React 18 way to subscribe to
-  // external state. No setState in any effect → no cascading renders.
+  // external state. No setState in any effect, no cascading renders.
   // getServerSnapshot returns "dark" so SSR and the first client render agree,
   // eliminating the hydration mismatch.
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);

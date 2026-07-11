@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
 import {
   motion,
@@ -14,103 +15,66 @@ import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
+import { projects as portfolioProjects } from "@/lib/projects-data";
 
 const heroBg = "/assets/hero-bg.jpg";
-const portrait = "/assets/me.jpg";
-const pLogistics = "/assets/project-logistics.jpg";
-const pHealth = "/assets/project-health.jpg";
-const pEscrow = "/assets/project-escrow.jpg";
-const pAi = "/assets/project-ai.jpg";
-const pSaas = "/assets/project-saas.jpg";
-const pFintech = "/assets/project-fintech.jpg";
+const portrait = "/assets/me.JPG";
 
 const services = [
   {
     n: "01",
     t: "Mobile App Development",
+    href: "/services#mobile-app-development",
     d: "iOS and Android apps engineered for performance, polish, and scale - React Native and Flutter.",
   },
   {
     n: "02",
     t: "Escrow-Powered Marketplaces",
+    href: "/services#escrow-powered-marketplaces",
     d: "Trust-first marketplaces with built-in escrow, dispute flows, and payout rails.",
   },
   {
     n: "03",
     t: "Logistics Mobile Apps",
+    href: "/services#logistics-mobile-apps",
     d: "Driver, dispatcher and customer apps with real-time tracking, routing and proof of delivery.",
   },
   {
     n: "04",
     t: "Website Design & Development",
+    href: "/services#website-design-development",
     d: "Marketing sites and product surfaces that feel premium and convert.",
   },
   {
     n: "05",
     t: "AI Agents",
+    href: "/services#ai-agents",
     d: "Production-grade agents, RAG pipelines and copilots wired into your operations.",
   },
   {
     n: "06",
     t: "DUNS Number Acquisition",
+    href: "/services#duns-number-acquisition",
     d: "End-to-end DUNS registration support for startups going global or onboarding enterprise.",
   },
   {
     n: "07",
     t: "WhatsApp Business Software",
+    href: "/services#whatsapp-business-software",
     d: "WhatsApp commerce, automation and CRM built on the official Cloud API.",
   },
   {
     n: "08",
     t: "SEO Services",
+    href: "/services#seo-services",
     d: "Technical SEO, content architecture and Core Web Vitals tuning that compounds.",
   },
 ];
 
-const projects = [
-  {
-    tag: "Logistics",
-    title: "Continental dispatch & tracking platform",
-    desc: "Real-time fleet visibility, route optimization and customer self-serve tracking.",
-    img: pLogistics,
-    span: "lg:col-span-7",
-  },
-  {
-    tag: "HealthTech",
-    title: "Patient-first care companion",
-    desc: "Telehealth, appointment booking and adherence reminders for a clinic network.",
-    img: pHealth,
-    span: "lg:col-span-5",
-  },
-  {
-    tag: "Marketplace",
-    title: "Escrow-backed creator marketplace",
-    desc: "Buyer-seller protection with milestone payouts and dispute resolution.",
-    img: pEscrow,
-    span: "lg:col-span-5",
-  },
-  {
-    tag: "AI",
-    title: "Multi-agent operations platform",
-    desc: "Composable agents that triage support, draft content and automate ops.",
-    img: pAi,
-    span: "lg:col-span-7",
-  },
-  {
-    tag: "SaaS",
-    title: "Revenue intelligence dashboard",
-    desc: "Unified pipeline, retention and forecasting for B2B teams.",
-    img: pSaas,
-    span: "lg:col-span-7",
-  },
-  {
-    tag: "FinTech",
-    title: "Multi-currency wallet & cards",
-    desc: "Compliant onboarding, virtual cards and instant cross-border transfers.",
-    img: pFintech,
-    span: "lg:col-span-5",
-  },
-];
+const selectedProjects = portfolioProjects.slice(0, 6).map((project, index) => ({
+  ...project,
+  span: index % 4 === 0 || index % 4 === 3 ? "lg:col-span-7" : "lg:col-span-5",
+}));
 
 const process = [
   {
@@ -278,7 +242,7 @@ function Hero() {
           >
             Work with me{" "}
             <span className="grid h-6 w-6 place-items-center rounded-full bg-background/10 transition-transform group-hover:translate-x-0.5">
-              -&gt;
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </span>
           </a>
           <a
@@ -331,9 +295,9 @@ function Marquee() {
 
 function Stats() {
   const items = [
-    { v: 3, s: "+", l: "Years of experience" },
+    { v: 4, s: "+", l: "Years of experience" },
     { v: 16, s: "+", l: "Startups served" },
-    { v: 4.8, s: "★", l: "Average rating", d: 1 },
+    { v: 4.8, s: "", l: "Average rating", d: 1, icon: "star" },
     { v: 22, s: "+", l: "Projects completed" },
   ];
   return (
@@ -342,8 +306,9 @@ function Stats() {
         {items.map((it, i) => (
           <Reveal key={it.l} delay={i * 0.08}>
             <div className="bg-background p-8 md:p-10">
-              <div className="text-display text-5xl text-gradient md:text-6xl">
+              <div className="flex items-center gap-2 text-display text-5xl text-gradient md:text-6xl">
                 <Counter to={it.v} suffix={it.s} decimals={it.d ?? 0} />
+                {it.icon === "star" && <Star className="h-8 w-8 fill-current md:h-10 md:w-10" aria-hidden />}
               </div>
               <div className="mt-3 text-sm text-muted-foreground">{it.l}</div>
             </div>
@@ -404,18 +369,19 @@ function Services() {
       <div className="grid gap-px overflow-hidden rounded-3xl hairline bg-hairline md:grid-cols-2 lg:grid-cols-4">
         {services.map((s, i) => (
           <Reveal key={s.n} delay={(i % 4) * 0.06}>
-            <div className="group relative h-full bg-background p-7 transition-colors hover:bg-surface">
+            <a
+              href={s.href}
+              className="group relative block h-full bg-background p-7 transition-colors hover:bg-surface"
+            >
               <div className="mb-10 flex items-center justify-between text-xs text-muted-foreground">
                 <span className="font-mono">{s.n}</span>
-                <span className="opacity-0 transition-opacity group-hover:opacity-100">
-                  -&gt;
-                </span>
+                <ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
               </div>
               <h3 className="text-lg font-medium tracking-tight">{s.t}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {s.d}
               </p>
-            </div>
+            </a>
           </Reveal>
         ))}
       </div>
@@ -438,7 +404,7 @@ function Work() {
         lead="A look at recent engagements across logistics, healthtech, marketplaces, AI, SaaS and fintech."
       />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        {projects.map((p, i) => (
+        {selectedProjects.map((p, i) => (
           <Reveal key={p.title} delay={(i % 2) * 0.08} className={p.span}>
             <ProjectCard {...p} />
           </Reveal>
@@ -449,47 +415,52 @@ function Work() {
 }
 
 function ProjectCard({
-  tag,
+  categories,
   title,
-  desc,
-  img,
+  summary,
+  image,
+  slug,
 }: {
-  tag: string;
+  categories: string[];
   title: string;
-  desc: string;
-  img: string;
+  summary: string;
+  image: string;
+  slug: string;
 }) {
   return (
-    <article className="group relative h-full overflow-hidden rounded-3xl surface-card">
+    <a href={`/projects/${slug}`} className="group relative block h-full overflow-hidden rounded-3xl surface-card">
       <div className="aspect-16/10 overflow-hidden">
-        <motion.img
-          src={img}
-          alt={title}
-          width={1280}
-          height={896}
-          loading="lazy"
-          className="h-full w-full object-cover"
+        <motion.div
+          className="relative h-full w-full"
           whileHover={{ scale: 1.04 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        />
+        >
+          <Image
+            src={image}
+            alt={`${title} project preview`}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </motion.div>
       </div>
       <div className="flex items-start justify-between gap-4 p-7">
         <div className="min-w-0">
           <div className="mb-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {tag}
+            {categories[0]}
           </div>
           <h3 className="truncate text-lg font-medium tracking-tight">
             {title}
           </h3>
           <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
-            {desc}
+            {summary}
           </p>
         </div>
         <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full hairline transition-transform group-hover:rotate-[-30deg]">
-          <span>↗</span>
+          <ArrowUpRight className="h-4 w-4" aria-hidden />
         </div>
       </div>
-    </article>
+    </a>
   );
 }
 
@@ -540,7 +511,7 @@ function About() {
               {[
                 ["Based in", "Lagos, Nigeria"],
                 ["Working", "Worldwide, async"],
-                ["Stack", "TS - React - Node - RN"],
+                ["Stack", "TS - React - Node - RN - Python - FastAPI"],
                 ["Style", "Tight scope, fast loops"],
               ].map(([k, v]) => (
                 <div key={k} className="bg-background p-5">
@@ -710,7 +681,7 @@ function CtaCard({
       <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
         {label}
         <span className="transition-transform group-hover:translate-x-0.5">
-          ↗
+          <ArrowUpRight className="h-4 w-4" aria-hidden />
         </span>
       </div>
       <div className="mt-6 text-2xl font-medium tracking-tight">{value}</div>
