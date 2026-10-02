@@ -227,7 +227,7 @@ function Hero() {
         <Reveal delay={0.5} className="mt-10 max-w-2xl">
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
             I&apos;m <span className="text-foreground">Icha Victory</span>, a
-            full stack software developer with over 4 years of experience
+            full stack software developer with over 5 years of experience
             building web applications, mobile apps, fintech products, logistics
             systems, AI tools, and startup software.
           </p>
@@ -295,7 +295,7 @@ function Marquee() {
 
 function Stats() {
   const items = [
-    { v: 4, s: "+", l: "Years of experience" },
+    { v: 5, s: "+", l: "Years of experience" },
     { v: 16, s: "+", l: "Startups served" },
     { v: 4.8, s: "", l: "Average rating", d: 1, icon: "star" },
     { v: 22, s: "+", l: "Projects completed" },
@@ -494,7 +494,7 @@ function About() {
           <Reveal delay={0.1}>
             <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
               I partner with founders, product teams and operators to design and
-              engineer software that earns trust. Four years in, my work spans
+              engineer software that earns trust. Five years in, my work spans
               fintech rails, logistics platforms, AI tooling and the marketing
               surfaces that bring it all to market.
             </p>
