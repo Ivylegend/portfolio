@@ -10,7 +10,11 @@ const contactSchema = z.object({
   message: z.string().trim().min(10, "Please share a little more about the project.").max(5000),
   projectTypes: z.array(z.string().trim().max(80)).max(12).optional().default([]),
   source: z.string().trim().max(80).optional().default("Website contact form"),
-  website: z.string().trim().max(0).optional().default(""),
+  inquiryType: z.enum(["project", "duns"]).default("project"),
+  website: z.string().trim().max(500).optional().default(""),
+}).refine((data) => data.inquiryType !== "duns" || data.company.length >= 2, {
+  path: ["company"],
+  message: "Please enter your registered business name.",
 });
 
 function escapeHtml(value: string) {
@@ -56,7 +60,10 @@ export async function POST(request: Request) {
 
   const resend = new Resend(apiKey);
   const projectTypes = data.projectTypes.length ? data.projectTypes.join(", ") : "Not specified";
-  const subject = `New project inquiry from ${data.name}`;
+  const isDuns = data.inquiryType === "duns";
+  const heading = isDuns ? "New DUNS registration inquiry" : "New project inquiry";
+  const messageLabel = isDuns ? "Registration details" : "Project";
+  const subject = `${heading} from ${data.name.replace(/[\r\n]+/g, " ")}`;
   const text = [
     `Source: ${data.source}`,
     `Name: ${data.name}`,
@@ -65,13 +72,13 @@ export async function POST(request: Request) {
     `Budget: ${data.budget || "Not provided"}`,
     `Project type: ${projectTypes}`,
     "",
-    "Project:",
+    `${messageLabel}:`,
     data.message,
   ].join("\n");
 
   const html = `
     <div style="font-family: Inter, Arial, sans-serif; color: #151517; line-height: 1.55;">
-      <h1 style="font-size: 22px; margin: 0 0 18px;">New project inquiry</h1>
+      <h1 style="font-size: 22px; margin: 0 0 18px;">${heading}</h1>
       <table style="border-collapse: collapse; width: 100%; max-width: 680px;">
         <tr><td style="padding: 8px 0; color: #666;">Source</td><td style="padding: 8px 0;">${escapeHtml(data.source)}</td></tr>
         <tr><td style="padding: 8px 0; color: #666;">Name</td><td style="padding: 8px 0;">${escapeHtml(data.name)}</td></tr>
@@ -80,23 +87,24 @@ export async function POST(request: Request) {
         <tr><td style="padding: 8px 0; color: #666;">Budget</td><td style="padding: 8px 0;">${escapeHtml(data.budget || "Not provided")}</td></tr>
         <tr><td style="padding: 8px 0; color: #666;">Project type</td><td style="padding: 8px 0;">${escapeHtml(projectTypes)}</td></tr>
       </table>
-      <h2 style="font-size: 16px; margin: 24px 0 8px;">Project</h2>
+      <h2 style="font-size: 16px; margin: 24px 0 8px;">${messageLabel}</h2>
       <p style="white-space: pre-line; margin: 0;">${escapeHtml(data.message)}</p>
     </div>
   `;
 
-  const result = await resend.emails.send({
-    from,
-    to,
-    replyTo: data.email,
-    subject,
-    text,
-    html,
-  });
-
-  if (result.error) {
+  try {
+    const result = await resend.emails.send({
+      from,
+      to,
+      replyTo: data.email,
+      subject,
+      text,
+      html,
+    });
+    if (result.error) throw new Error("Resend rejected the inquiry.");
+  } catch {
     return NextResponse.json(
-      { error: result.error.message || "Email could not be sent. Please try again." },
+      { error: "Email could not be sent. Please try again." },
       { status: 502 },
     );
   }

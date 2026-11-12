@@ -18,7 +18,7 @@ export const projects: Project[] = [
     title: "Vahre",
     categories: ["Marketplace", "E-commerce", "Africa"],
     region: "Africa",
-    image: "/assets/vahre.png",
+    image: "/assets/vahre.webp",
     website: "https://vahre.co/",
     summary:
       "Vahre is a marketplace for discovering African goods, hiring service providers, and supporting vendors across the continent and diaspora.",
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     slug: "steadyxchange",
     title: "SteadyXchange",
     categories: ["FinTech", "Crypto", "Mobile App"],
-    image: "/assets/steady-xchange.png",
+    image: "/assets/steady-xchange.webp",
     website: "https://steadyxchange.com.ng/",
     summary:
       "SteadyXchange lets Nigerians exchange crypto and gift cards for Naira quickly and securely through a mobile-first platform.",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     slug: "learnai",
     title: "LearnAI",
     categories: ["EdTech", "AI", "Mobile App"],
-    image: "/assets/learn-ai.png",
+    image: "/assets/learn-ai.webp",
     website: "https://thelearnai.co/",
     summary:
       "LearnAI provides AI tutoring for Nigerian students preparing for WAEC, NECO, and JAMB with personalized study paths and exam intelligence.",
@@ -126,7 +126,7 @@ export const projects: Project[] = [
     slug: "brycam",
     title: "Brycam",
     categories: ["B2B", "Marketplace", "Partnerships"],
-    image: "/assets/brycam.png",
+    image: "/assets/brycam.webp",
     website: "https://brycam.uk/",
     summary:
       "Brycam helps businesses discover verified partnerships, joint ventures, and expansion opportunities through a trusted opportunity platform.",
@@ -155,7 +155,7 @@ export const projects: Project[] = [
     slug: "proconnect",
     title: "ProConnect",
     categories: ["FinTech", "Education", "SaaS"],
-    image: "/assets/proconnect.png",
+    image: "/assets/proconnect.webp",
     website: "https://proconnectpay.com/",
     summary:
       "ProConnect helps African students finance postgraduate study abroad with non-collateral loans, admission guidance, and supported schools.",
@@ -193,7 +193,7 @@ export const projects: Project[] = [
     slug: "service-blocks",
     title: "Service Blocks",
     categories: ["Agency", "AI", "SaaS"],
-    image: "/assets/service-blocks.png",
+    image: "/assets/service-blocks.webp",
     website: "https://serviceblocks.biz/",
     summary:
       "Service Blocks builds websites, mobile apps, AI automations, and escrow marketplaces for startups and service businesses.",
@@ -230,7 +230,7 @@ export const projects: Project[] = [
     slug: "purplepay",
     title: "PurplePay",
     categories: ["FinTech", "Payments", "SaaS"],
-    image: "/assets/purple-pay.png",
+    image: "/assets/purple-pay.webp",
     website: "https://thepurplepay.com/",
     summary:
       "PurplePay is a digital payments platform built for secure onboarding, OTP verification, and seamless everyday transactions.",
@@ -268,7 +268,7 @@ export const projects: Project[] = [
     slug: "ag-luxury",
     title: "AG Luxury",
     categories: ["Real Estate", "Luxury", "Property"],
-    image: "/assets/ag-luxury.png",
+    image: "/assets/ag-luxury.webp",
     website: "https://agluxury-fullstack.vercel.app/",
     summary:
       "AG Luxury showcases premium apartments, townhouses, and custom homes with refined finishes, amenities, and flexible ownership options.",

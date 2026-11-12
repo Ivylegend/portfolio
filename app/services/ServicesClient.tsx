@@ -7,211 +7,7 @@ import { Reveal } from "@/components/Reveal";
 import Link from "next/link";
 import { motion } from "motion/react";
 
-const services = [
-  {
-    n: "01",
-    slug: "mobile-app-development",
-    t: "Mobile App Development",
-    tag: "iOS & Android",
-    lead: "Production-grade iOS and Android apps engineered for performance, polish, and scale — built with React Native and Flutter.",
-    includes: [
-      "Cross-platform React Native or Flutter builds",
-      "Custom UI design & design-system implementation",
-      "Offline-first architecture with background sync",
-      "Push notifications, deep linking, and biometric auth",
-      "App Store & Google Play submission and review support",
-      "Ongoing maintenance & feature iteration",
-    ],
-    idealFor: ["Startups", "SMBs", "Consumer apps", "B2B tools"],
-    stack: [
-      "React Native",
-      "Flutter",
-      "Expo",
-      "TypeScript",
-      "Supabase",
-      "Firebase",
-    ],
-  },
-  {
-    n: "02",
-    slug: "escrow-powered-marketplaces",
-    t: "Escrow-Powered Marketplaces",
-    tag: "Trust Infrastructure",
-    lead: "Trust-first marketplaces with built-in escrow, milestone-based payouts, dispute flows, and compliant payout rails.",
-    includes: [
-      "Escrow logic with milestone or delivery-based release",
-      "Buyer & seller dashboards with transaction history",
-      "Dispute resolution workflows",
-      "Stripe Connect / Paystack / Flutterwave payout rails",
-      "KYC & identity verification integration",
-      "Commission and fee management engine",
-    ],
-    idealFor: [
-      "Marketplace founders",
-      "Gig platforms",
-      "Creator economies",
-      "B2B procurement",
-    ],
-    stack: [
-      "Next.js",
-      "Node.js",
-      "Stripe Connect",
-      "Paystack",
-      "PostgreSQL",
-      "Supabase",
-    ],
-  },
-  {
-    n: "03",
-    slug: "logistics-mobile-apps",
-    t: "Logistics Mobile Apps",
-    tag: "Real-Time Tracking",
-    lead: "Driver, dispatcher and customer apps with real-time tracking, smart routing, and proof of delivery — built to handle volume.",
-    includes: [
-      "Real-time GPS tracking with map overlays",
-      "Driver and dispatcher management dashboards",
-      "Automated route optimization",
-      "Proof of delivery (photo + signature capture)",
-      "Push alerts for every shipment status change",
-      "Analytics and fleet reporting",
-    ],
-    idealFor: [
-      "Logistics companies",
-      "3PLs",
-      "Last-mile delivery",
-      "Supply chain ops",
-    ],
-    stack: [
-      "React Native",
-      "Node.js",
-      "Google Maps API",
-      "Socket.io",
-      "PostgreSQL",
-      "Redis",
-    ],
-  },
-  {
-    n: "04",
-    slug: "website-design-development",
-    t: "Website Design & Development",
-    tag: "Web Presence",
-    lead: "Marketing sites and product surfaces that feel premium, load fast, and convert visitors into customers.",
-    includes: [
-      "Custom design with motion & micro-interactions",
-      "Next.js / React builds with full CMS integration",
-      "Core Web Vitals optimization (LCP, CLS, INP)",
-      "Responsive, accessible markup (WCAG 2.1 AA)",
-      "Contact forms, lead capture, and email integration",
-      "Analytics setup (GA4, Plausible, PostHog)",
-    ],
-    idealFor: ["Startups", "Agencies", "SaaS products", "Personal brands"],
-    stack: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Sanity",
-      "Framer Motion",
-      "Vercel",
-    ],
-  },
-  {
-    n: "05",
-    slug: "ai-agents",
-    t: "AI Agents",
-    tag: "Intelligent Automation",
-    lead: "Production-grade agents, RAG pipelines, and copilots wired into your operations — not demos, real systems that ship.",
-    includes: [
-      "Custom LLM agent design with tool-use and memory",
-      "RAG pipelines over your proprietary data",
-      "Multi-agent orchestration (LangGraph, CrewAI)",
-      "Integration into Slack, WhatsApp, email, and internal tools",
-      "Evaluation, logging, and model-swap architecture",
-      "Cost & latency optimisation",
-    ],
-    idealFor: [
-      "Ops-heavy teams",
-      "Customer support",
-      "SaaS products",
-      "Internal tooling",
-    ],
-    stack: [
-      "OpenAI",
-      "Anthropic",
-      "LangChain",
-      "LangGraph",
-      "Pinecone",
-      "PostgreSQL + pgvector",
-    ],
-  },
-  {
-    n: "06",
-    slug: "duns-number-acquisition",
-    t: "DUNS Number Acquisition",
-    tag: "Business Registration",
-    lead: "End-to-end DUNS registration support for Nigerian startups going global or onboarding enterprise clients and government contracts.",
-    includes: [
-      "Business eligibility assessment",
-      "Document preparation and review",
-      "Submission via Dun & Bradstreet official channels",
-      "Status tracking until DUNS is issued",
-      "Follow-up for corrections or queries",
-      "Advice on using DUNS for grant & procurement applications",
-    ],
-    idealFor: [
-      "Nigerian startups",
-      "Exporters",
-      "Grant applicants",
-      "Enterprise onboarding",
-    ],
-    stack: ["Dun & Bradstreet", "CAC filing", "Documentation review"],
-  },
-  {
-    n: "07",
-    slug: "whatsapp-business-software",
-    t: "WhatsApp Business Software",
-    tag: "Commerce & CRM",
-    lead: "WhatsApp commerce flows, automated customer journeys, and CRM built entirely on the official WhatsApp Cloud API.",
-    includes: [
-      "WhatsApp Cloud API integration & webhook setup",
-      "Automated order, booking, and support flows",
-      "Interactive buttons, list menus, and catalog integration",
-      "Agent handoff with live chat fallback",
-      "CRM sync (HubSpot, Notion, custom DB)",
-      "Broadcast campaigns and opt-in management",
-    ],
-    idealFor: ["E-commerce", "Hospitality", "Healthcare", "Financial services"],
-    stack: [
-      "WhatsApp Cloud API",
-      "Meta Business Platform",
-      "Node.js",
-      "Twilio",
-      "PostgreSQL",
-    ],
-  },
-  {
-    n: "08",
-    slug: "seo-services",
-    t: "SEO Services",
-    tag: "Search Growth",
-    lead: "Technical SEO, content architecture, and Core Web Vitals tuning that compounds — not vanity metrics, actual traffic growth.",
-    includes: [
-      "Full technical SEO audit (crawl, indexation, schema)",
-      "Core Web Vitals remediation (LCP, CLS, INP)",
-      "Content strategy and keyword architecture",
-      "On-page optimisation and internal linking",
-      "Schema markup (Article, FAQ, Product, LocalBusiness)",
-      "Monthly reporting and iteration",
-    ],
-    idealFor: ["Content sites", "SaaS", "E-commerce", "Local businesses"],
-    stack: [
-      "Google Search Console",
-      "Ahrefs",
-      "Screaming Frog",
-      "Next.js",
-      "structured data",
-    ],
-  },
-];
+import { services } from "@/lib/services-data";
 
 export function ServicesClient() {
   return (
@@ -415,9 +211,9 @@ function ServiceCard({
         {/* Right: CTA arrow */}
         <div className="hidden lg:flex items-center">
           <Link
-            href="/contact"
+            href={`/services/${s.slug}`}
             className="group/btn grid h-12 w-12 shrink-0 place-items-center rounded-full hairline transition-all hover:bg-foreground hover:text-background hover:scale-110"
-            aria-label={`Start a ${s.t} project`}
+            aria-label={`Explore ${s.t}`}
           >
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" aria-hidden />
           </Link>
@@ -427,10 +223,10 @@ function ServiceCard({
       {/* Mobile CTA */}
       <div className="border-t border-hairline px-8 py-5 lg:hidden">
         <Link
-          href="/contact"
+          href={`/services/${s.slug}`}
           className="flex items-center justify-between text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          <span>Start a {s.t} project</span>
+          <span>Explore {s.t}</span>
           <ArrowRight className="h-4 w-4" aria-hidden />
         </Link>
       </div>

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/share-metadata";
 import { ContactClient } from "./ContactClient";
 
 export const metadata: Metadata = {
-  title: "Contact Icha Victory for Software and App Development",
-  description:
-    "Start a software development project with Icha Victory. Build custom web apps, mobile apps, escrow marketplaces, AI agents, logistics software, WhatsApp business tools, or SEO-ready websites.",
   keywords: [
     "hire software developer Nigeria",
     "contact app developer",
@@ -14,15 +12,7 @@ export const metadata: Metadata = {
     "WhatsApp business software developer",
     "SEO website developer",
   ],
-  alternates: {
-    canonical: "/contact",
-  },
-  openGraph: {
-    title: "Contact - Icha Victory",
-    description:
-      "Let's build something remarkable: custom software, app development, escrow platforms, AI agents, logistics tools, WhatsApp automation, and SEO-ready websites.",
-    url: "/contact",
-  },
+  ...shareMetadata("/contact", "Contact for Software and App Development", "Start a software development project with Icha Victory. Build custom web apps, mobile apps, escrow marketplaces, AI agents, logistics software, WhatsApp business tools, or SEO-ready websites."),
 };
 
 export default function ContactPage() {

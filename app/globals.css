@@ -211,3 +211,25 @@
   mix-blend-mode: overlay;
   opacity: 0.5;
 }
+.hero-enter {
+  animation: hero-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stack-marquee {
+  animation: stack-marquee 40s linear infinite;
+}
+
+@keyframes hero-enter {
+  from { transform: translateY(12px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes stack-marquee {
+  to { transform: translateX(calc(-50% - 1.5rem)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter, .stack-marquee {
+    animation: none;
+  }
+}

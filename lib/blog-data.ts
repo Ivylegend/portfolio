@@ -1,3 +1,5 @@
+import { dunsPath } from "./service-paths";
+
 export interface BlogPost {
   slug: string;
   tag: string;
@@ -405,17 +407,15 @@ Want an SEO audit for your site? [Get in touch →](/contact)
     content: `
 ## What Is a DUNS Number and Why Do You Need One?
 
-A DUNS (Data Universal Numbering System) number is a unique nine-digit identifier issued by Dun & Bradstreet (D&B) for business entities. It's the global standard for business identification — used by the US government, the EU, and thousands of enterprise procurement systems.
+A DUNS (Data Universal Numbering System) number is a unique nine-digit business identifier issued by Dun & Bradstreet (D&B). Organizations use it to look up and verify businesses. Requirements vary by platform.
 
 For a Nigerian startup, a DUNS number is increasingly a prerequisite for:
 
-- **US federal grants and contracts** (SAM.gov registration requires it)
 - **Apple Developer Program** enterprise enrollment
 - **Google for Startups** and other accelerator programs
 - **Enterprise procurement** — many multinational companies require suppliers to have a DUNS number
-- **Stripe Atlas** and similar global business infrastructure providers
 
-Without one, you're effectively locked out of a significant portion of global business opportunity.
+If you formed a company with Stripe Atlas and another platform asks for a DUNS number, confirm which legal entity that platform wants to verify. Do not assume your Nigerian business and your US entity can share a number.
 
 ## Who Is Eligible?
 
@@ -444,7 +444,7 @@ You'll provide:
 D&B may request verification documents, particularly for businesses outside the US. Have your CAC certificate of incorporation, evidence of business activity, and proof of address ready.
 
 **Step 4: Wait for processing**
-Standard processing takes 30 business days. An expedited option (for a fee) can deliver in 5 business days. For time-sensitive applications (e.g., a grant deadline), budget for the expedited option.
+Processing times and expedited options depend on the application channel. Check the current estimate with Dun & Bradstreet, and leave time for verification.
 
 **Step 5: Receive your DUNS number**
 Once issued, your DUNS number is permanent. It belongs to your business, not to you personally. Guard it — it's linked to your business credit profile.
@@ -460,12 +460,11 @@ Once issued, your DUNS number is permanent. It belongs to your business, not to 
 ## After You Get Your DUNS Number
 
 Once you have your DUNS number:
-- Register on SAM.gov if you're pursuing US government contracts or grants
 - Add it to your business profiles on platforms that request it
 - Keep your D&B profile updated — your business credit score is attached to it
 - Check your D&B file annually to ensure information is accurate
 
-Need help navigating the DUNS application process? [Get in touch →](/contact)
+Need help navigating the DUNS application process? [Request DUNS number registration support](${dunsPath}).
     `,
   },
   {

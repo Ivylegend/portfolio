@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/share-metadata";
 import { ProjectsClient } from "./ProjectsClient";
 
 export const metadata: Metadata = {
-  title: "Software Development Projects and Selected Work",
-  description:
-    "Explore software products built by Icha Victory across logistics, healthtech, escrow marketplaces, AI agents, SaaS dashboards, and fintech apps.",
   keywords: [
     "software development portfolio",
     "app development projects",
@@ -14,15 +12,7 @@ export const metadata: Metadata = {
     "fintech app developer",
     "Icha Victory projects",
   ],
-  alternates: {
-    canonical: "/projects",
-  },
-  openGraph: {
-    title: "Projects - Icha Victory",
-    description:
-      "Selected software development work across logistics, healthtech, AI, SaaS, fintech and escrow marketplaces.",
-    url: "/projects",
-  },
+  ...shareMetadata("/projects", "Software Development Projects and Selected Work", "Explore software products built by Icha Victory across logistics, healthtech, escrow marketplaces, AI agents, SaaS dashboards, and fintech apps."),
 };
 
 export default function ProjectsPage() {

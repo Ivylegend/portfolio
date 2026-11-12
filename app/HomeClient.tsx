@@ -1,15 +1,5 @@
-"use client";
-
 import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
-import {
-  motion,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "motion/react";
-import { useEffect, useRef } from "react";
 import { ContactForm } from "@/components/ContactForm";
 import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
@@ -18,55 +8,55 @@ import { Reveal } from "@/components/Reveal";
 import { projects as portfolioProjects } from "@/lib/projects-data";
 
 const heroBg = "/assets/hero-bg.jpg";
-const portrait = "/assets/me.JPG";
+const portrait = "/assets/me.webp";
 
 const services = [
   {
     n: "01",
     t: "Mobile App Development",
-    href: "/services#mobile-app-development",
+    href: "/services/mobile-app-development",
     d: "iOS and Android apps engineered for performance, polish, and scale - React Native and Flutter.",
   },
   {
     n: "02",
     t: "Escrow-Powered Marketplaces",
-    href: "/services#escrow-powered-marketplaces",
+    href: "/services/escrow-powered-marketplaces",
     d: "Trust-first marketplaces with built-in escrow, dispute flows, and payout rails.",
   },
   {
     n: "03",
     t: "Logistics Mobile Apps",
-    href: "/services#logistics-mobile-apps",
+    href: "/services/logistics-mobile-apps",
     d: "Driver, dispatcher and customer apps with real-time tracking, routing and proof of delivery.",
   },
   {
     n: "04",
     t: "Website Design & Development",
-    href: "/services#website-design-development",
+    href: "/services/website-design-development",
     d: "Marketing sites and product surfaces that feel premium and convert.",
   },
   {
     n: "05",
     t: "AI Agents",
-    href: "/services#ai-agents",
+    href: "/services/ai-agents",
     d: "Production-grade agents, RAG pipelines and copilots wired into your operations.",
   },
   {
     n: "06",
     t: "DUNS Number Acquisition",
-    href: "/services#duns-number-acquisition",
+    href: "/services/duns-number-acquisition",
     d: "End-to-end DUNS registration support for startups going global or onboarding enterprise.",
   },
   {
     n: "07",
     t: "WhatsApp Business Software",
-    href: "/services#whatsapp-business-software",
+    href: "/services/whatsapp-business-software",
     d: "WhatsApp commerce, automation and CRM built on the official Cloud API.",
   },
   {
     n: "08",
     t: "SEO Services",
-    href: "/services#seo-services",
+    href: "/services/seo-services",
     d: "Technical SEO, content architecture and Core Web Vitals tuning that compounds.",
   },
 ];
@@ -138,70 +128,38 @@ export function HomeClient() {
       className="relative min-h-screen overflow-x-hidden bg-background text-foreground"
     >
       <Nav />
-      <Hero />
-      <Marquee />
-      <Stats />
-      <Services />
-      <Work />
-      <About />
-      <Process />
-      <Testimonials />
-      <Contact />
+      <main>
+        <Hero />
+        <Marquee />
+        <Stats />
+        <Services />
+        <Work />
+        <About />
+        <Process />
+        <Testimonials />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );
 }
 
 function Hero() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 160]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 60, damping: 18 });
-  const sy = useSpring(my, { stiffness: 60, damping: 18 });
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      mx.set((e.clientX / window.innerWidth - 0.5) * 40);
-      my.set((e.clientY / window.innerHeight - 0.5) * 40);
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [mx, my]);
-
   return (
-    <section
-      ref={ref}
-      className="relative isolate flex min-h-svh items-center pt-32 pb-24"
-    >
-      <motion.div
-        style={{ y, opacity }}
-        className="pointer-events-none absolute inset-0 -z-10"
-      >
+    <section className="relative isolate flex min-h-svh items-center pt-32 pb-24">
+      <div className="pointer-events-none absolute inset-0 -z-10">
         <Image
           src={heroBg}
           alt=""
           fill
-          priority
+          preload
           sizes="100vw"
-          className="h-full w-full object-cover opacity-60"
+          className="object-cover opacity-60"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/40 via-background/20 to-background" />
-      </motion.div>
-      <motion.div
-        style={{ x: sx, y: sy }}
-        className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[520px] w-[520px] -translate-x-1/2 rounded-full"
-        aria-hidden
-      >
-        <div className="h-full w-full rounded-full bg-[radial-gradient(circle,oklch(1_0_0/0.08),transparent_60%)] blur-3xl" />
-      </motion.div>
+      </div>
       <div className="mx-auto w-full max-w-6xl px-4">
-        <Reveal>
+        <div className="hero-enter">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-muted-foreground">
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground/60 opacity-75" />
@@ -209,8 +167,8 @@ function Hero() {
             </span>
             Available for select Q3 engagements
           </div>
-        </Reveal>
-        <Reveal delay={0.05}>
+        </div>
+        <div className="hero-enter">
           <h1 className="text-display text-gradient text-[clamp(2.75rem,7.5vw,7.5rem)]">
             I build software
             <br />
@@ -223,19 +181,16 @@ function Hero() {
             <br />
             scale, and grow.
           </h1>
-        </Reveal>
-        <Reveal delay={0.5} className="mt-10 max-w-2xl">
+        </div>
+        <div className="hero-enter mt-10 max-w-2xl">
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
             I&apos;m <span className="text-foreground">Icha Victory</span>, a
             full stack software developer with over 5 years of experience
             building web applications, mobile apps, fintech products, logistics
             systems, AI tools, and startup software.
           </p>
-        </Reveal>
-        <Reveal
-          delay={0.65}
-          className="mt-10 flex flex-wrap items-center gap-3"
-        >
+        </div>
+        <div className="hero-enter mt-10 flex flex-wrap items-center gap-3">
           <a
             href="#contact"
             className="group inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
@@ -251,7 +206,7 @@ function Hero() {
           >
             View projects
           </a>
-        </Reveal>
+        </div>
       </div>
       <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
         Scroll
@@ -277,18 +232,14 @@ function Marquee() {
   ];
   return (
     <div className="overflow-hidden border-y border-hairline py-6">
-      <motion.div
-        className="flex gap-12 whitespace-nowrap text-sm text-muted-foreground"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 40, ease: "linear", repeat: Infinity }}
-      >
-        {[...words, ...words, ...words].map((w, i) => (
-          <span key={`${w}-${i}`} className="flex items-center gap-12">
+      <div className="stack-marquee flex w-max gap-12 whitespace-nowrap text-sm text-muted-foreground">
+        {[...words, ...words].map((w, i) => (
+          <span key={`${w}-${i}`} aria-hidden={i >= words.length ? true : undefined} className="flex items-center gap-12">
             {w}
             <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
           </span>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -430,11 +381,7 @@ function ProjectCard({
   return (
     <a href={`/projects/${slug}`} className="group relative block h-full overflow-hidden rounded-3xl surface-card">
       <div className="aspect-16/10 overflow-hidden">
-        <motion.div
-          className="relative h-full w-full"
-          whileHover={{ scale: 1.04 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <div className="relative h-full w-full transition-transform duration-700 motion-safe:group-hover:scale-[1.04]">
           <Image
             src={image}
             alt={`${title} project preview`}
@@ -442,7 +389,7 @@ function ProjectCard({
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
           />
-        </motion.div>
+        </div>
       </div>
       <div className="flex items-start justify-between gap-4 p-7">
         <div className="min-w-0">
@@ -476,6 +423,7 @@ function About() {
                 alt="Icha Victory"
                 width={896}
                 height={1152}
+                sizes="(min-width: 1024px) 460px, (min-width: 640px) 70vw, 100vw"
                 className="h-full w-full object-cover grayscale"
               />
             </div>

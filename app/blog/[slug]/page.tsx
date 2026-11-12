@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/share-metadata";
 import { notFound } from "next/navigation";
 import { blogPosts, getPostBySlug } from "@/lib/blog-data";
 import { BlogPostClient } from "./BlogPostClient";
@@ -15,17 +16,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: { canonical: `/blog/${slug}` },
-    openGraph: {
-      title: `${post.title} | Icha Victory`,
-      description: post.excerpt,
-      url: `https://icha.ng/blog/${slug}`,
-      type: "article",
-    },
-  };
+  return shareMetadata(`/blog/${slug}`, post.title, post.excerpt, undefined, "article");
 }
 
 export default async function BlogPostPage({

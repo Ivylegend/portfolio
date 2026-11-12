@@ -8,11 +8,12 @@ const projectTypes = ["Web App", "Mobile App", "AI / Agents", "Marketplace", "Fi
 type ContactFormProps = {
   variant?: "compact" | "full";
   source?: string;
+  duns?: boolean;
 };
 
 type Status = "idle" | "sending" | "success" | "error";
 
-export function ContactForm({ variant = "full", source = "Website contact form" }: ContactFormProps) {
+export function ContactForm({ variant = "full", source = "Website contact form", duns = false }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [feedback, setFeedback] = useState("");
   const isFull = variant === "full";
@@ -35,6 +36,7 @@ export function ContactForm({ variant = "full", source = "Website contact form" 
       message: String(formData.get("message") ?? ""),
       projectTypes: selectedTypes,
       source,
+      inquiryType: duns ? "duns" : "project",
       website: String(formData.get("website") ?? ""),
     };
 
@@ -52,7 +54,7 @@ export function ContactForm({ variant = "full", source = "Website contact form" 
 
       form.reset();
       setStatus("success");
-      setFeedback("Message sent. I will reply as soon as I can.");
+      setFeedback(duns ? "Request sent. I will email you about next steps." : "Message sent. I will reply as soon as I can.");
     } catch (error) {
       setStatus("error");
       setFeedback(error instanceof Error ? error.message : "Message could not be sent. Please try again.");
@@ -69,11 +71,11 @@ export function ContactForm({ variant = "full", source = "Website contact form" 
         </div>
 
         <div className={isFull ? "grid gap-5 sm:grid-cols-2" : "grid gap-5"}>
-          <Field label="Company" id={`${variant}-company`} name="company" placeholder="Optional" />
-          {isFull && <Field label="Budget (USD)" id="budget" name="budget" placeholder="e.g. $10k - $40k" />}
+          <Field label={duns ? "Registered business name" : "Company"} id={`${variant}-company`} name="company" placeholder={duns ? "As registered" : "Optional"} required={duns} />
+          {isFull && !duns && <Field label="Budget (USD)" id="budget" name="budget" placeholder="e.g. $10k - $40k" />}
         </div>
 
-        {isFull && (
+        {isFull && !duns && (
           <div>
             <div className="mb-2 block text-xs uppercase tracking-[0.2em] text-muted-foreground">Project type</div>
             <div className="flex flex-wrap gap-2">
@@ -90,16 +92,18 @@ export function ContactForm({ variant = "full", source = "Website contact form" 
         )}
 
         <div>
-          <label htmlFor={`${variant}-message`} className="mb-2 block text-xs uppercase tracking-[0.2em] text-muted-foreground">Project</label>
+          <label htmlFor={`${variant}-message`} className="mb-2 block text-xs uppercase tracking-[0.2em] text-muted-foreground">{duns ? "What do you need the number for?" : "Project"}</label>
           <textarea
             id={`${variant}-message`}
             name="message"
             rows={isFull ? 6 : 5}
             required
             minLength={10}
-            placeholder={isFull ? "What are you building? Where are you stuck? What does success look like?" : "What are you building?"}
+            maxLength={5000}
+            placeholder={duns ? "Include your registration country, the requesting platform, and any deadline." : isFull ? "What are you building? Where are you stuck? What does success look like?" : "What are you building?"}
             className="w-full resize-none rounded-2xl hairline bg-surface px-4 py-3 text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-ring/30"
           />
+          {duns && <p className="mt-2 text-sm text-muted-foreground">Please do not include identity documents, registration numbers, or passwords. I will use your email to respond to this inquiry.</p>}
         </div>
 
         <button
@@ -107,7 +111,7 @@ export function ContactForm({ variant = "full", source = "Website contact form" 
           disabled={isSending}
           className="mt-2 inline-flex items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSending ? "Sending..." : "Send message"} <ArrowRight className="h-4 w-4" aria-hidden />
+          {isSending ? "Sending..." : duns ? "Request registration support" : "Send message"} <ArrowRight className="h-4 w-4" aria-hidden />
         </button>
 
         {feedback && (
