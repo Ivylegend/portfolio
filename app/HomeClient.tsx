@@ -1,10 +1,9 @@
 import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
-import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
-import { Reveal } from "@/components/Reveal";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { projects as portfolioProjects } from "@/lib/projects-data";
 
 const heroBg = "/assets/hero-bg.jpg";
@@ -254,16 +253,16 @@ function Stats() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-24 md:py-32">
       <div className="grid gap-px overflow-hidden rounded-3xl hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((it, i) => (
-          <Reveal key={it.l} delay={i * 0.08}>
+        {items.map((it) => (
+          <ScrollReveal key={it.l}>
             <div className="bg-background p-8 md:p-10">
               <div className="flex items-center gap-2 text-display text-5xl text-gradient md:text-6xl">
-                <Counter to={it.v} suffix={it.s} decimals={it.d ?? 0} />
+                {it.v.toFixed(it.d ?? 0)}{it.s}
                 {it.icon === "star" && <Star className="h-8 w-8 fill-current md:h-10 md:w-10" aria-hidden />}
               </div>
               <div className="mt-3 text-sm text-muted-foreground">{it.l}</div>
             </div>
-          </Reveal>
+          </ScrollReveal>
         ))}
       </div>
     </section>
@@ -281,23 +280,23 @@ function SectionHeading({
 }) {
   return (
     <div className="mb-16 max-w-3xl">
-      <Reveal>
+      <ScrollReveal>
         <div className="mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
           <span className="h-px w-8 bg-muted-foreground/50" />
           {kicker}
         </div>
-      </Reveal>
-      <Reveal delay={0.05}>
+      </ScrollReveal>
+      <ScrollReveal>
         <h2 className="text-display text-gradient text-[clamp(2rem,4.5vw,4rem)]">
           {title}
         </h2>
-      </Reveal>
+      </ScrollReveal>
       {lead && (
-        <Reveal delay={0.1}>
+        <ScrollReveal>
           <p className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
             {lead}
           </p>
-        </Reveal>
+        </ScrollReveal>
       )}
     </div>
   );
@@ -318,8 +317,8 @@ function Services() {
         lead="From a single product surface to a full stack - built with the rigor of a platform team and the speed of a founding engineer."
       />
       <div className="grid gap-px overflow-hidden rounded-3xl hairline bg-hairline md:grid-cols-2 lg:grid-cols-4">
-        {services.map((s, i) => (
-          <Reveal key={s.n} delay={(i % 4) * 0.06}>
+        {services.map((s) => (
+          <ScrollReveal key={s.n}>
             <a
               href={s.href}
               className="group relative block h-full bg-background p-7 transition-colors hover:bg-surface"
@@ -333,7 +332,7 @@ function Services() {
                 {s.d}
               </p>
             </a>
-          </Reveal>
+          </ScrollReveal>
         ))}
       </div>
     </section>
@@ -355,10 +354,10 @@ function Work() {
         lead="A look at recent engagements across logistics, healthtech, marketplaces, AI, SaaS and fintech."
       />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        {selectedProjects.map((p, i) => (
-          <Reveal key={p.title} delay={(i % 2) * 0.08} className={p.span}>
+        {selectedProjects.map((p) => (
+          <ScrollReveal key={p.title} className={p.span}>
             <ProjectCard {...p} />
-          </Reveal>
+          </ScrollReveal>
         ))}
       </div>
     </section>
@@ -416,18 +415,24 @@ function About() {
     <section id="about" className="mx-auto max-w-6xl px-4 py-24 md:py-32">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
-          <Reveal>
+          <ScrollReveal>
             <div className="relative overflow-hidden rounded-3xl surface-card">
-              <Image
-                src={portrait}
-                alt="Icha Victory"
-                width={896}
-                height={1152}
-                sizes="(min-width: 1024px) 460px, (min-width: 640px) 70vw, 100vw"
-                className="h-full w-full object-cover grayscale"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={`/assets/me-small.webp 480w, ${portrait} 960w`}
+                  sizes="(min-width: 1152px) 440px, (min-width: 1024px) 39vw, calc(100vw - 32px)"
+                />
+                <Image
+                  src={portrait}
+                  alt="Icha Victory"
+                  width={960}
+                  height={1280}
+                  className="h-full w-full object-cover grayscale"
+                />
+              </picture>
             </div>
-          </Reveal>
+          </ScrollReveal>
         </div>
         <div className="lg:col-span-7">
           <SectionHeading
@@ -439,22 +444,22 @@ function About() {
               </>
             }
           />
-          <Reveal delay={0.1}>
+          <ScrollReveal>
             <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
               I partner with founders, product teams and operators to design and
               engineer software that earns trust. Five years in, my work spans
               fintech rails, logistics platforms, AI tooling and the marketing
               surfaces that bring it all to market.
             </p>
-          </Reveal>
-          <Reveal delay={0.18}>
+          </ScrollReveal>
+          <ScrollReveal>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
               I care about the unglamorous parts - onboarding, error states,
               performance budgets, accessibility - because that&apos;s where
               products are actually made.
             </p>
-          </Reveal>
-          <Reveal delay={0.26}>
+          </ScrollReveal>
+          <ScrollReveal>
             <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl hairline bg-hairline">
               {[
                 ["Based in", "Lagos, Nigeria"],
@@ -470,7 +475,7 @@ function About() {
                 </div>
               ))}
             </div>
-          </Reveal>
+          </ScrollReveal>
         </div>
       </div>
     </section>
@@ -494,8 +499,8 @@ function Process() {
       <div className="relative">
         <div className="absolute left-0 right-0 top-7 hidden h-px bg-hairline lg:block" />
         <div className="grid gap-6 lg:grid-cols-5">
-          {process.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.08}>
+          {process.map((s) => (
+            <ScrollReveal key={s.n}>
               <div className="relative">
                 <div className="grid h-14 w-14 place-items-center rounded-full glass font-mono text-sm">
                   {s.n}
@@ -505,7 +510,7 @@ function Process() {
                   {s.d}
                 </p>
               </div>
-            </Reveal>
+            </ScrollReveal>
           ))}
         </div>
       </div>
@@ -527,8 +532,8 @@ function Testimonials() {
         }
       />
       <div className="grid gap-6 md:grid-cols-2">
-        {testimonials.map((t, i) => (
-          <Reveal key={t.name} delay={(i % 2) * 0.08}>
+        {testimonials.map((t) => (
+          <ScrollReveal key={t.name}>
             <figure className="h-full rounded-3xl surface-card p-8 md:p-10">
               <div className="text-2xl leading-none text-muted-foreground">
                 &quot;
@@ -549,7 +554,7 @@ function Testimonials() {
                 </span>
               </figcaption>
             </figure>
-          </Reveal>
+          </ScrollReveal>
         ))}
       </div>
     </section>
@@ -563,14 +568,14 @@ function Contact() {
       className="relative mx-auto max-w-6xl px-4 py-24 md:py-40"
     >
       <div className="pointer-events-none absolute inset-x-4 top-0 -z-10 h-[400px] rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_0%,oklch(1_0_0/0.06),transparent_70%)]" />
-      <Reveal>
+      <ScrollReveal>
         <div className="mb-6 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
           <span className="h-px w-8 bg-muted-foreground/50" />
           Contact
           <span className="h-px w-8 bg-muted-foreground/50" />
         </div>
-      </Reveal>
-      <Reveal delay={0.05}>
+      </ScrollReveal>
+      <ScrollReveal>
         <h2 className="text-display text-gradient text-center text-[clamp(2.5rem,7vw,6.5rem)]">
           Let&apos;s build something
           <br />
@@ -578,12 +583,12 @@ function Contact() {
             remarkable.
           </em>
         </h2>
-      </Reveal>
+      </ScrollReveal>
       <div className="mx-auto mt-16 grid max-w-5xl gap-6 lg:grid-cols-5">
-        <Reveal className="lg:col-span-3">
+        <ScrollReveal className="lg:col-span-3">
           <ContactForm variant="compact" source="Homepage contact form" />
-        </Reveal>
-        <Reveal delay={0.1} className="lg:col-span-2">
+        </ScrollReveal>
+        <ScrollReveal className="lg:col-span-2">
           <div className="flex h-full flex-col gap-3">
             <CtaCard
               label="WhatsApp"
@@ -604,7 +609,7 @@ function Contact() {
               hint="Pick a time that works for you."
             />
           </div>
-        </Reveal>
+        </ScrollReveal>
       </div>
     </section>
   );

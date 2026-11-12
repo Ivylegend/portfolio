@@ -1,11 +1,8 @@
-"use client";
-
 import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { Reveal } from "@/components/Reveal";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import Link from "next/link";
-import { motion } from "motion/react";
 
 import { services } from "@/lib/services-data";
 
@@ -13,94 +10,92 @@ export function ServicesClient() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <Nav />
-
-      {/* Hero */}
-      <section className="relative isolate flex min-h-[52vh] items-end pb-20 pt-40">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,oklch(0.3_0.01_270/0.55),transparent_70%)]" />
-        </div>
-        <div className="mx-auto w-full max-w-6xl px-4">
-          <Reveal>
-            <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              <span className="h-px w-8 bg-muted-foreground/50" />
-              Services
-            </div>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h1 className="text-display text-gradient text-[clamp(2.75rem,6.5vw,6rem)]">
-              Engineering the surfaces
-              <br />
-              <em className="italic font-normal text-muted-foreground">
-                your business runs on.
-              </em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              From a single product surface to a full platform — built with the
-              rigour of a platform team and the speed of a founding engineer.
-              Here&apos;s exactly what each engagement covers.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Services grid */}
-      <section className="mx-auto max-w-6xl px-4 pb-24 md:pb-32">
-        <div className="flex flex-col gap-6">
-          {services.map((s) => (
-            <Reveal key={s.n} delay={0.04}>
-              <ServiceCard service={s} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="relative mx-auto max-w-6xl px-4 pb-28 md:pb-40">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl surface-card p-12 md:p-16 text-center">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_-10%,oklch(1_0_0/0.05),transparent_70%)]" />
-            <div className="relative">
-              <div className="mb-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+      <main>
+        {/* Hero */}
+        <section className="relative isolate flex min-h-[52vh] items-end pb-20 pt-40">
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,oklch(0.3_0.01_270/0.55),transparent_70%)]" />
+          </div>
+          <div className="mx-auto w-full max-w-6xl px-4">
+            <div className="hero-enter">
+              <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 <span className="h-px w-8 bg-muted-foreground/50" />
-                Ready to build?
-                <span className="h-px w-8 bg-muted-foreground/50" />
+                Services
               </div>
-              <h2 className="text-display text-gradient text-[clamp(2rem,5vw,4.5rem)]">
-                Let&apos;s talk about
+            </div>
+            <div className="hero-enter">
+              <h1 className="text-display text-gradient text-[clamp(2.75rem,6.5vw,6rem)]">
+                Engineering the surfaces
                 <br />
                 <em className="italic font-normal text-muted-foreground">
-                  your project.
+                  your business runs on.
                 </em>
-              </h2>
-              <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
-                Every engagement starts with a 30-minute discovery call — no
-                pitch decks, just an honest conversation about what you&apos;re
-                building.
+              </h1>
+            </div>
+            <div className="hero-enter">
+              <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                From a single product surface to a full platform — built with the
+                rigour of a platform team and the speed of a founding engineer.
+                Here&apos;s exactly what each engagement covers.
               </p>
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
-                >
-                  Start a project
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-background/10 transition-transform group-hover:translate-x-0.5">
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                  </span>
-                </Link>
-                <a
-                  href="https://wa.me/2349122971136"
-                  className="inline-flex items-center gap-3 rounded-full hairline px-7 py-3.5 text-sm font-medium transition-colors hover:bg-accent"
-                >
-                  WhatsApp me <MessageCircle className="h-4 w-4" aria-hidden />
-                </a>
-              </div>
             </div>
           </div>
-        </Reveal>
-      </section>
+        </section>
 
+        {/* Services grid */}
+        <section className="mx-auto max-w-6xl px-4 pb-24 md:pb-32">
+          <div className="flex flex-col gap-6">
+            {services.map((s) => (
+              <ServiceCard key={s.slug} service={s} />
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="relative mx-auto max-w-6xl px-4 pb-28 md:pb-40">
+          <ScrollReveal>
+            <div className="relative overflow-hidden rounded-3xl surface-card p-12 md:p-16 text-center">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_-10%,oklch(1_0_0/0.05),transparent_70%)]" />
+              <div className="relative">
+                <div className="mb-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                  <span className="h-px w-8 bg-muted-foreground/50" />
+                  Ready to build?
+                  <span className="h-px w-8 bg-muted-foreground/50" />
+                </div>
+                <h2 className="text-display text-gradient text-[clamp(2rem,5vw,4.5rem)]">
+                  Let&apos;s talk about
+                  <br />
+                  <em className="italic font-normal text-muted-foreground">
+                    your project.
+                  </em>
+                </h2>
+                <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
+                  Every engagement starts with a 30-minute discovery call — no
+                  pitch decks, just an honest conversation about what you&apos;re
+                  building.
+                </p>
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                  <Link
+                    href="/contact"
+                    className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
+                  >
+                    Start a project
+                    <span className="grid h-6 w-6 place-items-center rounded-full bg-background/10 transition-transform group-hover:translate-x-0.5">
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                    </span>
+                  </Link>
+                  <a
+                    href="https://wa.me/2349122971136"
+                    className="inline-flex items-center gap-3 rounded-full hairline px-7 py-3.5 text-sm font-medium transition-colors hover:bg-accent"
+                  >
+                    WhatsApp me <MessageCircle className="h-4 w-4" aria-hidden />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </section>
+      </main>
       <Footer />
     </div>
   );
@@ -112,11 +107,9 @@ function ServiceCard({
   service: (typeof services)[0];
 }) {
   return (
-    <motion.div
+    <div
       id={s.slug}
-      className="group relative scroll-mt-28 overflow-hidden rounded-3xl surface-card"
-      whileHover={{ y: -2 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative scroll-mt-28 overflow-hidden rounded-3xl surface-card transition-transform duration-300 motion-safe:hover:-translate-y-0.5"
     >
       {/* Glow on hover */}
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(40%_40%_at_50%_0%,oklch(1_0_0/0.04),transparent_70%)]" />
@@ -230,6 +223,6 @@ function ServiceCard({
           <ArrowRight className="h-4 w-4" aria-hidden />
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }

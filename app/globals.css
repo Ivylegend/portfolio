@@ -228,6 +228,16 @@
   to { transform: translateX(calc(-50% - 1.5rem)); }
 }
 
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-reveal {
+      animation: hero-enter linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-enter, .stack-marquee {
     animation: none;

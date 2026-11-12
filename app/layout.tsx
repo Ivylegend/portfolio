@@ -21,6 +21,7 @@ const jetBrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 const structuredData = {
