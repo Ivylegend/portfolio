@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
@@ -26,13 +25,13 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#039;");
 }
 
-export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL ?? "victoryicha2@gmail.com";
-  const from = process.env.RESEND_FROM_EMAIL ?? "Icha Victory <website@contact.icha.ng>";
+export async function onRequestPost({ request, env }: { request: Request; env: Record<string, string | undefined> }) {
+  const apiKey = env.RESEND_API_KEY;
+  const to = env.CONTACT_TO_EMAIL ?? "victoryicha2@gmail.com";
+  const from = env.RESEND_FROM_EMAIL ?? "Icha Victory <website@contact.icha.ng>";
 
   if (!apiKey) {
-    return NextResponse.json(
+    return Response.json(
       { error: "Email service is not configured. Missing RESEND_API_KEY." },
       { status: 500 },
     );
@@ -42,12 +41,12 @@ export async function POST(request: Request) {
   try {
     payload = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+    return Response.json({ error: "Invalid request body." }, { status: 400 });
   }
 
   const parsed = contactSchema.safeParse(payload);
   if (!parsed.success) {
-    return NextResponse.json(
+    return Response.json(
       { error: parsed.error.issues[0]?.message ?? "Please check the form and try again." },
       { status: 400 },
     );
@@ -55,7 +54,7 @@ export async function POST(request: Request) {
 
   const data = parsed.data;
   if (data.website) {
-    return NextResponse.json({ ok: true });
+    return Response.json({ ok: true });
   }
 
   const resend = new Resend(apiKey);
@@ -103,11 +102,11 @@ export async function POST(request: Request) {
     });
     if (result.error) throw new Error("Resend rejected the inquiry.");
   } catch {
-    return NextResponse.json(
+    return Response.json(
       { error: "Email could not be sent. Please try again." },
       { status: 502 },
     );
   }
 
-  return NextResponse.json({ ok: true });
+  return Response.json({ ok: true });
 }
